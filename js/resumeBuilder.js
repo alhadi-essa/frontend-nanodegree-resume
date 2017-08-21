@@ -1,16 +1,16 @@
  var bio = {
-     name: "Essa Al-hadi",
-     role: "Technical Consultant",
-     contacts: [{
-         mobile: "+966-58285-2282",
-         email: "alhadi.essa@gmail.com",
-         github: "alhadi-essa",
-         linkdin: "alhadiessa",
-         location: "Riyadh"
-     }],
-     welcomeMessage: "I'm loving with world",
-     skills: ["JS", "HTML", "ITIL", "CSS", "ITSM", "Photographer"],
-     biopic: "images/Me.jpg"
+     "name": "Essa Al-hadi",
+     "role": "Technical Consultant",
+     "contacts": {
+         "mobile": "+966-58285-2282",
+         "email": "alhadi.essa@gmail.com",
+         "github": "alhadi-essa",
+         "linkdin": "alhadiessa",
+         "location": "Riyadh"
+     },
+     "welcomeMessage": "I'm loving with world",
+     "skills": ["JS", "HTML", "ITIL", "CSS", "ITSM", "Photographer"],
+     "biopic": "images/Me.jpg"
  };
 
  var work = {
@@ -49,31 +49,29 @@
      "schools": [{
          "name": "Jazan University",
          "degree": "BA",
-         "major": "Computer Science",
+         "majors": ["Computer Science"],
          "dates": "2010 - 2015",
          "location": "Gizan"
      }],
      "onlineCourses": [{
-         "tittle": "Front-End Nanodegree",
+         "title": "Front-End Nanodegree",
          "school": "Udacity",
          "dates": "Aug-Sep",
          "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
      }]
  };
 
- var projects = {
-     "project": [{
-         "title": "Sanabel Alsalam-ITSM SNOW Project",
-         "dates": "Feb 2017 – Mar 2017",
-         "description": "Drive Innovation by implementing ITSM process using world class Service management tool, with an objective to standardize the service delivery process within Sanabel Alsalam.To implement:Incident Management,Service Level Management,Reports and Dashboards,Integration,Active Directory for user authentication,Exchange for email notifications,Asset Management (CI to be loaded from SCCM),and Arabization of Incident management for the end user interface",
-         "images": ""
-     }, {
-         "title": "Computrized Medical Shop Managment",
-         "dates": "Feb 2015 – June 2015",
-         "description": "The methodology that we have adopted to solve the said problem of the “MEDICAL SHOP MANAGEMENT SYSTEM” is a database handling system. As a front-end tool we have used Visual Basic to interact with the user and as a back-end tool we used Microsoft Access 8.When user logs on the system at first his/her authentication is validated and then user gets control of the application. Now he/she can add, modify or search the records, but if the user is an unauthorized one then he/she cannot enter the system and hence would not be able to modify the records.As the Visual Basic is an event driven procedure, all the tasks are done in modular approach, which has been supplied with the code sheet. But the application has several functions, procedures to enhance efficacy of the program.",
-         "images": ""
-     }]
- };
+ var projects = [{
+     "title": "Sanabel Alsalam-ITSM SNOW Project",
+     "dates": "Feb 2017 – Mar 2017",
+     "description": "Drive Innovation by implementing ITSM process using world class Service management tool, with an objective to standardize the service delivery process within Sanabel Alsalam.To implement:Incident Management,Service Level Management,Reports and Dashboards,Integration,Active Directory for user authentication,Exchange for email notifications,Asset Management (CI to be loaded from SCCM),and Arabization of Incident management for the end user interface",
+     "images": [""]
+ }, {
+     "title": "Computrized Medical Shop Managment",
+     "dates": "Feb 2015 – June 2015",
+     "description": "The methodology that we have adopted to solve the said problem of the “MEDICAL SHOP MANAGEMENT SYSTEM” is a database handling system. As a front-end tool we have used Visual Basic to interact with the user and as a back-end tool we used Microsoft Access 8.When user logs on the system at first his/her authentication is validated and then user gets control of the application. Now he/she can add, modify or search the records, but if the user is an unauthorized one then he/she cannot enter the system and hence would not be able to modify the records.As the Visual Basic is an event driven procedure, all the tasks are done in modular approach, which has been supplied with the code sheet. But the application has several functions, procedures to enhance efficacy of the program.",
+     "images": ["images/GP-PEntry.jpg", "images/GP-SEntry.jpg", "images/GP-Sales.jpg", "images/GP-Bill.jpg"]
+ }];
 
  bio.display = function() {
      var formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -84,80 +82,77 @@
      $('#header').prepend(formattedName);
      $('#header').append(formattedbioPic);
      $('#header').append(formattedWM);
-
+     var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+     var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+     var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+     var formattedLinkdin = HTMLLinkden.replace("%data%", bio.contacts.linkdin);
+     $("#footerContacts").append(formattedMobile, formattedEmail, formattedLinkdin);
+     $("#topContacts").append(formattedMobile, formattedEmail, formattedLinkdin, formattedLocation);
      $("#header").append(HTMLskillsStart);
      bio.skills.forEach(function(skill) {
          var formattedSkill = HTMLskills.replace("%data%", skill);
          $("#skills").append(formattedSkill);
      });
-
-     for (var contact in bio.contacts) {
-        if (bio.contacts){
-         var formattedMobile = HTMLmobile.replace("%data%", bio.contacts[contact].mobile);
-         var formattedEmail = HTMLemail.replace("%data%", bio.contacts[contact].email);
-         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts[contact].location);
-         var formattedLinkdin = HTMLLinkden.replace("%data%", bio.contacts[contact].linkdin);
-         $("#footerContacts").append(formattedMobile, formattedEmail, formattedLinkdin);
-         $("#topContacts").append(formattedMobile, formattedEmail, formattedLinkdin, formattedLocation);
-     }}
  };
 
  work.display = function() {
-     for (var job in work.jobs) {
-        if (work.jobs){
+     work.jobs.forEach(function(job) {
          $("#workExperience").append(HTMLworkStart);
-         var FormaattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-         var FormaattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-         var FormaattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-         var FormaattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-         var FormaattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+         var FormaattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+         var FormaattedTitle = HTMLworkTitle.replace("%data%", job.title);
+         var FormaattedDates = HTMLworkDates.replace("%data%", job.dates);
+         var FormaattedLocation = HTMLworkLocation.replace("%data%", job.location);
+         var FormaattedDescription = HTMLworkDescription.replace("%data%", job.description);
          var FormaattedEmployerTitle = FormaattedEmployer + FormaattedTitle;
          $(".work-entry:last").append(FormaattedEmployerTitle, FormaattedDates, FormaattedLocation, FormaattedDescription);
-     }}
+     });
      $("#workExperience").append(HTMLTraining);
      for (var list in work.training) {
-        if (work.training){
-         $("#workExperience").append(HTMLworkStart);
-         var FormaattedName = HTMLTrainingName.replace("%data%", work.training[list].name);
-         var FormaattedTrTitle = HTMLTrainingTitle.replace("%data%", work.training[list].title);
-         var FormaattedTrDates = HTMLTrainingDates.replace("%data%", work.training[list].dates);
-         var FormaattedTrLocation = HTMLTrainingLocation.replace("%data%", work.training[list].location);
-         var FormaattedTrDescription = HTMLTrainingDescription.replace("%data%", work.training[list].description);
-         $(".work-entry:last").append(FormaattedName + FormaattedTrTitle, FormaattedTrDates, FormaattedTrLocation, FormaattedTrDescription);
-     }}
+         if (work.training) {
+             $("#workExperience").append(HTMLworkStart);
+             var FormaattedName = HTMLTrainingName.replace("%data%", work.training[list].name);
+             var FormaattedTrTitle = HTMLTrainingTitle.replace("%data%", work.training[list].title);
+             var FormaattedTrDates = HTMLTrainingDates.replace("%data%", work.training[list].dates);
+             var FormaattedTrLocation = HTMLTrainingLocation.replace("%data%", work.training[list].location);
+             var FormaattedTrDescription = HTMLTrainingDescription.replace("%data%", work.training[list].description);
+             $(".work-entry:last").append(FormaattedName + FormaattedTrTitle, FormaattedTrDates, FormaattedTrLocation, FormaattedTrDescription);
+         }
+     }
  };
 
  projects.display = function() {
-     $("#projects").append(HTMLprojectStart);
-     projects.project.forEach(function(item) {
+     projects.forEach(function(item) {
+         $("#projects").append(HTMLprojectStart);
          var FormaattedTitle = HTMLprojectTitle.replace("%data%", item.title);
          var FormaattedDates = HTMLprojectDates.replace("%data%", item.dates);
          var FormaattedDescription = HTMLprojectDescription.replace("%data%", item.description);
          $(".project-entry:last").append(FormaattedTitle, FormaattedDates, FormaattedDescription);
+         item.images.forEach(function(image) {
+             var projectImage = HTMLprojectImage.replace("%data%", image);
+             $(".project-entry:last").append(projectImage);
+         });
      });
  };
 
  education.display = function() {
-     for (var school in education.schools) {
-        if (education.schools){
+     education.schools.forEach(function(school) {
          $("#education").append(HTMLschoolStart);
-         var FormaattedName = HTMLschoolName.replace("%data%", education.schools[school].name);
-         var FormaattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-         var FormaattedDates = HTMLprojectDates.replace("%data%", education.schools[school].dates);
-         var FormaattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
-         var FormaattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
-         $(".education-entry:last").append(FormaattedName + FormaattedDegree, FormaattedDates, FormaattedLocation, FormaattedMajor);
-     }}
-     for (var lists in education.onlineCourses) {
-        if (education.onlineCourses){
-         $("#education").append(HTMLonlineClasses);
+         var FormaattedName = HTMLschoolName.replace("%data%", school.name);
+         var FormaattedDegree = HTMLschoolDegree.replace("%data%", school.degree);
+         var FormaattedDates = HTMLprojectDates.replace("%data%", school.dates);
+         var FormaattedLocation = HTMLschoolLocation.replace("%data%", school.location);
+         var formatedMajors = HTMLschoolMajor.replace("%data%", school.majors);
+         $(".education-entry:last").append(FormaattedName + FormaattedDegree, FormaattedDates, FormaattedLocation, formatedMajors);
+     });
+     $("#education").append(HTMLonlineClasses);
+     education.onlineCourses.forEach(function(lists) {
+         var FormaattedNameC = HTMLonlineTitle.replace("%data%", lists.title);
+         var FormaattedDegreeC = HTMLonlineSchool.replace("%data%", lists.school);
+         var FormaattedDatesC = HTMLonlineDates.replace("%data%", lists.dates);
+         var FormaattedUrl = HTMLonlineURL.replace("%data%", lists.url);
          $("#education").append(HTMLschoolStart);
-         var FormaattedNameC = HTMLonlineTitle.replace("%data%", education.onlineCourses[lists].tittle);
-         var FormaattedDegreeC = HTMLonlineSchool.replace("%data%", education.onlineCourses[lists].school);
-         var FormaattedDatesC = HTMLonlineDates.replace("%data%", education.onlineCourses[lists].dates);
-         var FormaattedUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[lists].url);
          $(".education-entry:last").prepend(FormaattedNameC + FormaattedDegreeC, FormaattedDatesC, FormaattedUrl);
-     }}
+     });
  };
 
 

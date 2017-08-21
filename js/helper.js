@@ -33,7 +33,7 @@ var HTMLprojectStart = '<div class="project-entry"></div>';
 var HTMLprojectTitle = '<a href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
+var HTMLprojectImage = '<img class="img-size" src="%data%">';
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
@@ -87,7 +87,7 @@ function initializeMap() {
 
         // adds the single location property from bio to the locations array
         for (var loc in bio.contacts) {
-            locations.push(bio.contacts[loc].location);
+            locations.push(bio.contacts.location);
         }
 
         // iterates through school locations and appends each location to
