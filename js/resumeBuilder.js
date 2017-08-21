@@ -61,7 +61,8 @@
      }]
  };
 
- var projects = [{
+ var projects = {
+    "projects": [{
      "title": "Sanabel Alsalam-ITSM SNOW Project",
      "dates": "Feb 2017 – Mar 2017",
      "description": "Drive Innovation by implementing ITSM process using world class Service management tool, with an objective to standardize the service delivery process within Sanabel Alsalam.To implement:Incident Management,Service Level Management,Reports and Dashboards,Integration,Active Directory for user authentication,Exchange for email notifications,Asset Management (CI to be loaded from SCCM),and Arabization of Incident management for the end user interface",
@@ -71,7 +72,8 @@
      "dates": "Feb 2015 – June 2015",
      "description": "The methodology that we have adopted to solve the said problem of the “MEDICAL SHOP MANAGEMENT SYSTEM” is a database handling system. As a front-end tool we have used Visual Basic to interact with the user and as a back-end tool we used Microsoft Access 8.When user logs on the system at first his/her authentication is validated and then user gets control of the application. Now he/she can add, modify or search the records, but if the user is an unauthorized one then he/she cannot enter the system and hence would not be able to modify the records.As the Visual Basic is an event driven procedure, all the tasks are done in modular approach, which has been supplied with the code sheet. But the application has several functions, procedures to enhance efficacy of the program.",
      "images": ["images/GP-PEntry.jpg", "images/GP-SEntry.jpg", "images/GP-Sales.jpg", "images/GP-Bill.jpg"]
- }];
+ }]
+};
 
  bio.display = function() {
      var formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -121,7 +123,7 @@
  };
 
  projects.display = function() {
-     projects.forEach(function(item) {
+     projects.projects.forEach(function(item) {
          $("#projects").append(HTMLprojectStart);
          var FormaattedTitle = HTMLprojectTitle.replace("%data%", item.title);
          var FormaattedDates = HTMLprojectDates.replace("%data%", item.dates);
